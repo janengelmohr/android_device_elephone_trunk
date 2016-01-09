@@ -45,6 +45,12 @@ on enable-target-low-power
     write /sys/devices/system/cpu/cpufreq/interactive/target_loads 80
     write /sys/devices/system/cpu/cpufreq/interactive/align_windows 1
 
+    # Configure foreground and background cpuset
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/boost/cpus 0-1
+    write /dev/cpuset/background/cpus 0
+    write /dev/cpuset/system-background/cpus 2-3
+
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "msm-adreno-tz"
     write /sys/class/devfreq/qcom,cpubw.30/governor "cpufreq"
 
